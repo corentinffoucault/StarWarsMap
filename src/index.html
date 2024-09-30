@@ -1,15 +1,27 @@
-<div class="anychart-embed anychart-embed-samples-maps-svg-01" id="anychart-embed-samples-maps-svg-01">
+<!doctype html>
+<html>
+<head>
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-map.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <div id="ac_style_samples-maps-svg-01" style="display:none;">
-        html, body, #container {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
+
+    <style>
+        html, body, #container, .anychart-embed-samples-maps-svg-01 {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
+        [id^="ac_layer_"] {
+            clip-path: none !important;
+        }
+    </style>
+</head>
+<body>
+<div class="anychart-embed anychart-embed-samples-maps-svg-01" id="anychart-embed-samples-maps-svg-01">
+
+    <div id="ac_style_samples-maps-svg-01" style="display:none;">
     </div>
     <script>(function () {
         function ac_add_to_head(el) {
@@ -90,12 +102,6 @@
                         cx="5210.2422"
                         cy="4283.4893"
                         r="14.769064" />
-                    <circle
-                        style="fill:#00ff00;stroke-width:0;stroke-miterlimit:0"
-                        id="4"
-                        cx="6210.2422"
-                        cy="4283.4893"
-                        r="14.769064" />
                 </g></svg>`
 
             // sample data
@@ -109,8 +115,12 @@
 
             const map = anychart.map()
 
-            map.interactivity().zoomOnMouseWheel(true);
+            map.interactivity()
+                .zoomOnMouseWheel(true)
             map.geoData(svgImage)
+                map.unboundRegions('as-is')
+                // set chart padding
+                .padding([85, 20, 20, 20]);
 
             map.title('SVG Sample Map')
 
@@ -123,7 +133,9 @@
 
             // draw a map
             map.container('container')
-            map.draw();
-        });
+            map.draw()
+        })
     </script>
 </div>
+</body>
+</html>
