@@ -1,0 +1,129 @@
+<div class="anychart-embed anychart-embed-samples-maps-svg-01" id="anychart-embed-samples-maps-svg-01">
+    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-map.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <div id="ac_style_samples-maps-svg-01" style="display:none;">
+        html, body, #container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        }
+    </div>
+    <script>(function () {
+        function ac_add_to_head(el) {
+            var head = document.getElementsByTagName('head')[0]
+            head.insertBefore(el, head.firstChild)
+        }
+
+        function ac_add_style(css) {
+            var ac_style = document.createElement('style')
+            if (ac_style.styleSheet) {
+                ac_style.styleSheet.cssText = css
+            } else {
+                ac_style.appendChild(document.createTextNode(css))
+            }
+            ac_add_to_head(ac_style)
+        }
+
+        ac_add_style(document.getElementById('ac_style_samples-maps-svg-01').innerHTML)
+        ac_add_style('.anychart-embed-samples-maps-svg-01{}')
+    })()</script>
+    <div id="container"></div>
+    <script>
+        anychart.onDocumentReady(function () {
+            // svgImage as string
+
+            const svgImage = `<svg xmlns="https://www.w3.org/2000/svg"
+   width="10000"
+   height="8200"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     id="namedview64"
+     showgrid="false"
+     inkscape:zoom="0.79902439"
+     inkscape:cx="4885.7618"
+     inkscape:cy="4144.243"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g70"
+     inkscape:document-rotation="0" />
+       <g
+       data-ac-wrapper-id="3"
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g70">
+                    <path
+                    style="fill:none;stroke:#81bd00;stroke-width:8.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;image-rendering:auto;stroke-miterlimit:0;stroke-dasharray:none"
+                    d="m 5332.6921,3804.742 c 69.5661,126.1377 52.9561,242.1651 1.979,343.806 -50.9773,101.6409 -137.1107,193.6121 -226.8468,266.512"
+                    id="path74"
+                    sodipodi:nodetypes="csc" />
+                    <circle
+                        style="fill:#b3b3b3;stroke-width:0;stroke-miterlimit:0"
+                        id="0"
+                        cx="5331.0029"
+                        cy="3807.5352"
+                        r="16.588032" />
+                    <circle
+                        style="fill:#00ff00;stroke-width:0;stroke-miterlimit:0"
+                        id="1"
+                        cx="5108.6792"
+                        cy="4415.9487"
+                        r="15.706944" />
+                    <circle
+                        style="fill:#00ff00;stroke-width:0;stroke-miterlimit:0"
+                        id="2"
+                        cx="5210.2422"
+                        cy="4283.4893"
+                        r="14.769064" />
+                    <circle
+                        style="fill:#00ff00;stroke-width:0;stroke-miterlimit:0"
+                        id="4"
+                        cx="6210.2422"
+                        cy="4283.4893"
+                        r="14.769064" />
+                </g></svg>`
+
+            // sample data
+            const dataSet = anychart.data.set([
+                ['1', 300],
+                ['2', 230]
+            ])
+
+            // mapping the data to the chart
+            const mapDataSet = dataSet.mapAs({ id: 0, value: 1 })
+
+            const map = anychart.map()
+
+            map.interactivity().zoomOnMouseWheel(true);
+            map.geoData(svgImage)
+
+            map.title('SVG Sample Map')
+
+            // set the series
+            const series = map.choropleth(mapDataSet)
+            series.geoIdField('id')
+
+            // disable the labels
+            series.labels(false)
+
+            // draw a map
+            map.container('container')
+            map.draw();
+        });
+    </script>
+</div>
