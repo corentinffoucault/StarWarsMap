@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "svg-pan-zoom": "github:bumbu/svg-pan-zoom"
+  }
+}

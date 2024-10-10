@@ -9,6 +9,7 @@
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-map.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+    <script src="dist/svg-pan-zoom.js"></script>
     <style>
         html, body, #container, .anychart-embed-samples-maps-svg-01 {
             background-color: white;
@@ -20,9 +21,12 @@
         svg {
             background-color: white
         }
-        .path:hover {
-            color: red;
-            fill: #eee;
+        [id^="path"]:hover {
+            stroke: red !important;
+            opacity: 0.5;
+        }
+        [id^="g"]:hover > [id^="path"] {
+            stroke: red !important;
             opacity: 0.5;
         }
 
@@ -30,8 +34,27 @@
             clip-path: none !important;
         }
     </style>
+    <script>      // Don't use window.onLoad like this in production, because it can only listen to one function.
+    window.onload = function() {
+        svgPanZoom('#svg1', {
+            zoomEnabled: true,
+            controlIconsEnabled: true,
+            fit: true,
+            center: true,
+        });
+
+        document.getElementById('enable').addEventListener('click', function() {
+            window.zoomTiger.enableControlIcons();
+        })
+        document.getElementById('disable').addEventListener('click', function() {
+            window.zoomTiger.disableControlIcons();
+        })
+    };
+    </script>
 </head>
 <body>
+<button id="enable">enable</button>
+<button id="disable">disable</button>
 <svg
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:cc="http://creativecommons.org/ns#"
@@ -804,7 +827,8 @@
                   style="display:inline"
                   inkscape:label="Voie Hydienne"
                   inkscape:highlight-color="#d725a5">
-                   <a title="Voie Hydienne"
+                   <a id="a1"
+                      title="Voie Hydienne"
                       class="path"
                       hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
                   <path class="path"
