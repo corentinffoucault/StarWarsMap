@@ -1,158 +1,16 @@
-<!doctype html>
-<html>
-<head>
-    <link href="https://cdn.anychart.com/releases/8.13.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4"
-          rel="stylesheet" type="text/css">
-    <link href="https://cdn.anychart.com/releases/8.13.0/fonts/css/anychart-font.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4"
-          rel="stylesheet" type="text/css">
-    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-map.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="https://cdn.anychart.com/releases/8.13.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
-    <script src="dist/svg-pan-zoom.js"></script>
-    <style>
-        html, body, .anychart-embed-samples-maps-svg-01 {
-            background-color: white;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0
-        }
-        svg {
-            background-color: white
-        }
-        [id^="path"]:hover {
-            stroke: red !important;
-            opacity: 0.5;
-        }
-        [id^="g"]:hover > [id^="path"] {
-            stroke: red !important;
-            opacity: 0.5;
-        }
-
-        [id^="ac_layer_"] {
-            clip-path: none !important;
-        }
-        .row {
-            display: flex;
-            height: 100%;
-        }
-
-        .map {
-            flex: 90%;
-        }
-
-        .interface {
-            flex: 10%;
-        }
-    </style>
-    <script>
-
-
-        fetch("./map.svg")
-            .then((res) => res.text())
-            .then((text) => {
-                console.log("############svg##############")
-                console.log(JSON.stringify(svg, null, 2))
-                console.log("##########################")
-                svg = document.importNode(svg,true); // surprisingly optional in these browsers
-                document.getElementById("container").appendChild(svg);
-            })
-            .catch((e) => console.error(e));
-        // Don't use window.onLoad like this in production, because it can only listen to one function.
-     var pointerD = `M312.226,107.062c4.421,10.177,6.663,21.005,6.663,32.183c0,44.572-36.263,80.835-80.835,80.835
-	s-80.835-36.263-80.835-80.835s36.263-80.835,80.835-80.835c14.991,0,29.63,4.136,42.334,11.961
-	c3.527,2.172,4.626,6.792,2.453,10.318c-2.173,3.528-6.792,4.628-10.319,2.453c-10.338-6.367-22.257-9.732-34.468-9.732
-	c-36.302,0-65.835,29.533-65.835,65.835s29.533,65.835,65.835,65.835s65.835-29.533,65.835-65.835
-	c0-9.109-1.824-17.927-5.421-26.206c-1.65-3.799,0.092-8.217,3.891-9.867C306.155,101.519,310.575,103.262,312.226,107.062z
-	 M377.299,139.244c0,40.795-30.339,130.421-56.319,194.774c-15.226,37.715-30.987,72.136-44.381,96.923
-	c-21.449,39.694-31.201,45.166-38.545,45.166c-7.308,0-17.695-5.364-39.333-45.147c-13.401-24.641-29.138-59.075-44.31-96.961
-	c-25.65-64.047-55.603-153.482-55.603-194.755C98.809,62.465,161.273,0,238.054,0S377.299,62.465,377.299,139.244z M362.299,139.244
-	C362.299,70.735,306.563,15,238.054,15S113.809,70.735,113.809,139.244c0,30.965,21.251,105.33,52.88,185.047
-	c14.553,36.678,29.789,70.489,42.903,95.207c17.78,33.513,26.186,40.142,28.351,41.387c2.152-1.375,10.416-8.405,28.115-42.057
-	c13.133-24.972,28.38-58.781,42.931-95.201C341.373,242.571,362.299,170.197,362.299,139.244z`;
-
-
-    window.onload = function () {
-        zoomTiger = svgPanZoom('#svg1', {
-            zoomEnabled: true,
-            controlIconsEnabled: true,
-            fit: true,
-            center: true,
-            zoomScaleSensitivity: 0.5,
-            maxZoom: 100,
-            beforeZoom: function(){
-                if (document.getElementById("pointer_tototo")) {
-                    document.getElementById("pointer_tototo").remove();
-                }
-            }
-        })
-
-        document.getElementById('coruscant')
-            .addEventListener('click', function () {
-                if (document.getElementById("pointer_tototo")) {
-                    document.getElementById("pointer_tototo").remove();
-                }
-                var point = { x: 3246.3549000000003, y: 1796.4559 }
-                zoomTiger.centerAt(2, point, true)
-
-                var newG = document.createElementNS("http://www.w3.org/2000/svg", 'g'); //Create a path in SVG's namespace
-                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); //Create a path in SVG's namespace
-                newElement.setAttribute("d",pointerD); //Set path's data
-                newG.appendChild(newElement);
-                zoomTiger.getViewport().getViewport().appendChild(newG);
-                newG.setAttribute("fill", `red`)
-                newG.setAttribute("id", `pointer_tototo`)
-                var facteur = 0.25
-                var pointerSize = newG.getBBox()
-                newG.setAttribute("transform", `matrix(${facteur},0,0,${facteur},${point.x-((pointerSize.width/2+pointerSize.x)*facteur)},${point.y-(pointerSize.height+pointerSize.y)*facteur})`)
-            })
-
-        document.getElementById('naos')
-            .addEventListener('click', function () {
-                if (document.getElementById("pointer_tototo")) {
-                    document.getElementById("pointer_tototo").remove();
-                }
-                var point = { x: 2415.0712000000003, y: 4598.6947 }
-                zoomTiger.centerAt(2, point, true)
-
-                var newG = document.createElementNS("http://www.w3.org/2000/svg", 'g'); //Create a path in SVG's namespace
-                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path'); //Create a path in SVG's namespace
-                newElement.setAttribute("d",pointerD); //Set path's data
-                newG.setAttribute("fill", `red`)
-                newG.appendChild(newElement);
-                newG.setAttribute("id", `pointer_tototo`)
-                zoomTiger.getViewport().getViewport().appendChild(newG);
-                var facteur = 0.25
-                var pointerSize = newG.getBBox()
-                newG.setAttribute("transform", `matrix(${facteur},0,0,${facteur},${point.x-((pointerSize.width/2+pointerSize.x)*facteur)},${point.y-(pointerSize.height+pointerSize.y)*facteur})`)
-            })
-
-        document.getElementById('Tapani')
-            .addEventListener('click', function () {
-                if (document.getElementById("pointer_tototo")) {
-                    document.getElementById("pointer_tototo").remove();
-                }
-                var point = { x: 2434.9736000000003, y: 2344.9163 }
-                zoomTiger.centerAt(5, point, true)
-            })
-    }
-    </script>
-</head>
-<body>
-<div class="row">
-    <div id="container2" class="column interface" style="border: 1px solid black;">
-        <button id="coruscant">coruscant</button>
-        <button id="naos">naos</button>
-        <button id="Tapani">Tapani</button>
-    </div>
-    <div id="container" class="column map" style="border: 1px solid black; background-color: black">
-        <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
-             xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-             xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-             version="1.1" id="svg1" width="100%" height="100%" xml:space="preserve" sodipodi:docname="tmp.svg" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" style="background-color: black">
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" id="svg1" width="100%" height="100%" xml:space="preserve" sodipodi:docname="tmp.svg" inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
   <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1920" inkscape:window-height="1016" id="namedview702" showgrid="false" inkscape:lockguides="false" inkscape:zoom="0.08" inkscape:cx="7537.5" inkscape:cy="4029.9838" inkscape:window-x="0" inkscape:window-y="27" inkscape:window-maximized="1" inkscape:current-layer="svg1"/>
     <defs id="defs2936"/>
+    <g id="g720" style="display:inline">
+    <g id="g710" clip-path="url(#clipPath712)">
+      <g inkscape:label="Clip" id="g708">
+        <g id="layer13" style="display:inline" inkscape:label="Fond" inkscape:highlight-color="#000000">
+          <rect style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.18408;stroke-opacity:1" id="rect219" width="6000" height="5000" x="0" y="0"/>
+        </g>
+      </g>
+    </g>
+  </g>
     <g id="g4" style="display:inline" inkscape:label="expansion">
     <g inkscape:groupmode="layer" id="layer35" inkscape:label="Bordure Médiane" sodipodi:insensitive="true">
       <path style="opacity:0.271525;fill:#439fff;fill-opacity:1;stroke:#00ffe6;stroke-width:5.66929;stroke-dasharray:none;stroke-opacity:1" d="m 3660.2207,872.2377999999999 c 0,0 522.7181,528.8729 541.2594,1080.1936 -0.0003,163.7579 -53.3091,381.2635 352.8437,843.7785 75.3907,87.0367 272.4155,250.0475 -226.9674,554.8723 -106.9586,65.3566 11.1507,-222.624 -317.604,7.9705 -7.8555,24.247 -368.6545,340.6621 -639.4322,436.2186 -227.5586,126.0987 -280.1896,243.0484 -845.0112,231.67 -166.3031,-16.8033 -160.4435,-140.3207 -195.9843,-176.1913 -44.171,-118.1524 -397.5843,-92.2376 -412.5743,-280.1533 -0.3904,-106.5679 1.1848,-272.1081 -102.6239,-411.0005 -133.3375,-152.1738 -485.2807,145.666 -507.6428,-379.6536 -1.5378,-110.8281 -186.3033,-476.7601 108.5471,-778.7015 86.8293,-83.1179 4.3342,-296.9616 176.0394,-460.0113 53.284,-56.482 1664.7925,-1001.3674 2069.1505,-668.992 z" id="path355" sodipodi:nodetypes="cccccccccccccc"/>
@@ -938,39 +796,3 @@
     </g>
   </g>
 </svg>
-
-</div>
-</div>
-</body>
-</html>
-<!--
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-  <xsl:template match="catalog">
-    <catalog>
-      <xsl:apply-templates/>
-    </catalog>
-  </xsl:template>
-
-  <xsl:template match="circle">
-    <circle>
-        <xsl:attribute name="style">
-        <xsl:value-of select="@style"/>
-        </xsl:attribute>
-        <xsl:attribute name="id">
-        <xsl:value-of select="@id"/>
-        </xsl:attribute>
-        <xsl:attribute name="r">
-        <xsl:value-of select="@r"/>
-        </xsl:attribute>
-        <xsl:attribute name="cx">
-        <xsl:value-of select="@cx*0.5+@cy*(-0.8660253985)+5842.753040037"/>
-        </xsl:attribute>
-        <xsl:attribute name="cy">
-        <xsl:value-of select="@cx*0.8660253985+@cy*0.5+178.1175757042"/>
-        </xsl:attribute>
-
-    </circle>
-  </xsl:template>
-</xsl:stylesheet>
--->

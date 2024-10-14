@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "svg-pan-zoom": "github:bumbu/svg-pan-zoom"
+    "xml2js": "^0.6.2"
   }
 }
