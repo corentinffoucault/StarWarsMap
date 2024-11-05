@@ -1,17 +1,22 @@
 {
-  "planet": [{
-    "id": "circle164",
-    "name": "coruscant",
-    "x": 3246.3549000000003,
-    "y": 1796.4559
-  }, {
-    "id": "circle524",
-    "name": "naos",
-    "x": 2415.0712000000003,
-    "y": 4598.6947
-  }],
-  "sector": [{
-    "id": "g118",
-    "name": "Tapani"
-  }]
+  "planet": {
+    "coruscant": {
+      "id": "circle164",
+      "name": "coruscant",
+      "x": 3246.3549000000003,
+      "y": 1796.4559
+    },
+    "naos": {
+      "id": "circle524",
+      "name": "naos",
+      "x": 2415.0712000000003,
+      "y": 4598.6947
+    }
+  },
+  "sector": {
+    "tapani": {
+      "id": "g118",
+      "name": "Tapani"
+    }
+  }
 }

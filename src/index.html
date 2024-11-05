@@ -39,77 +39,83 @@
         }
     </style>
     <script>
-        fetch("./map.svg")
+        let zoomTiger;
+
+        function cleanPointer() {
+            if (document.getElementById("pointer_sw")) {
+                document.getElementById("pointer_sw")
+                    .remove();
+            }
+        }
+
+        function createPointer(point) {
+            fetch("./pointer.svg")
+                .then((res) => res.text())
+                .then((text) => {
+                    var parser = new DOMParser();
+                    var pointer = parser.parseFromString(text, "image/svg+xml").lastChild;
+                    zoomTiger.getViewport()
+                        .getViewport()
+                        .appendChild(pointer);
+                    var facteur = 0.25
+                    var pointerSize = pointer.getBBox()
+                    pointer.setAttribute("transform", `matrix(${facteur},0,0,${facteur},${point.x - ((pointerSize.width / 2 + pointerSize.x) * facteur)},${point.y - (pointerSize.height + pointerSize.y) * facteur})`)
+                })
+        }
+
+        fetch("./content.json")
             .then((res) => res.text())
             .then((text) => {
-                var parser = new DOMParser();
-                var doc = parser.parseFromString(text, "image/svg+xml");
-                document.getElementById("container").appendChild(doc.lastChild);
-                zoomTiger = svgPanZoom('#svg1', {
-                    zoomEnabled: true,
-                    controlIconsEnabled: true,
-                    fit: true,
-                    center: true,
-                    zoomScaleSensitivity: 0.5,
-                    maxZoom: 100,
-                    beforeZoom: function(){
-                        cleanPointer()
-                    }
-                })
 
-                function cleanPointer () {
-                    if (document.getElementById("pointer_sw")) {
-                        document.getElementById("pointer_sw").remove();
-                    }
-                }
+                const contentJson = JSON.parse(text)
 
-                function createPointer (point) {
-                    fetch("./pointer.svg")
-                        .then((res) => res.text())
-                        .then((text) => {
-                            var parser = new DOMParser();
-                            var pointer = parser.parseFromString(text, "image/svg+xml").lastChild;
-                            zoomTiger.getViewport().getViewport().appendChild(pointer);
-                            var facteur = 0.25
-                            var pointerSize = pointer.getBBox()
-                            pointer.setAttribute("transform", `matrix(${facteur},0,0,${facteur},${point.x-((pointerSize.width/2+pointerSize.x)*facteur)},${point.y-(pointerSize.height+pointerSize.y)*facteur})`)
+                fetch("./map.svg")
+                    .then((res) => res.text())
+                    .then((text) => {
+                        var parser = new DOMParser();
+                        var doc = parser.parseFromString(text, "image/svg+xml");
+                        document.getElementById("container").appendChild(doc.lastChild);
+                        zoomTiger = svgPanZoom('#svg1', {
+                            zoomEnabled: true,
+                            controlIconsEnabled: true,
+                            fit: true,
+                            center: true,
+                            zoomScaleSensitivity: 0.5,
+                            maxZoom: 100,
+                            beforeZoom: function () {
+                                cleanPointer()
+                            }
                         })
-                }
 
-                document.getElementById('coruscant')
-                    .addEventListener('click', function () {
-                        cleanPointer()
-                        var point = { x: 3246.3549000000003, y: 1796.4559 }
-                        zoomTiger.centerAt(2, point, true)
-                        createPointer(point)
-                    })
-
-                document.getElementById('naos')
-                    .addEventListener('click', function () {
-                        cleanPointer()
-                        var point = { x: 2415.0712000000003, y: 4598.6947 }
-                        zoomTiger.centerAt(2, point, true)
-                        createPointer(point)
-                    })
-
-                document.getElementById('Tapani')
-                    .addEventListener('click', function () {
-                        cleanPointer()
-                        const sector = document.getElementById("g118")
-                        const bBox = sector.getBBox();
-                        var point = { x: bBox.x+bBox.width/2, y:  bBox.y+bBox.height/2 }
-                        zoomTiger.centerAt(5, point, true)
-                    })
-            })
-            .catch((e) => console.error(e));
+                        document.getElementById('fname')
+                            .addEventListener('input', function (event) {
+                                cleanPointer()
+                                let info = contentJson.planet[event.target.value.toLocaleLowerCase()]
+                                let usePointer = true;
+                                if (!info) {
+                                    info = contentJson.sector[event.target.value.toLocaleLowerCase()]
+                                    usePointer = false;
+                                }
+                                if (!info) {
+                                    return;
+                                }
+                                const sector = document.getElementById(info.id)
+                                const bBox = sector.getBBox();
+                                var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
+                                zoomTiger.centerAt(5, point, true)
+                                if (usePointer) {
+                                    createPointer(point)
+                                }
+                            })
+                    }).catch((e) => console.error(e));
+            });
     </script>
 </head>
 <body>
 <div class="row">
     <div id="container2" class="column interface" style="border: 1px solid black;">
-        <button id="coruscant">coruscant</button>
-        <button id="naos">naos</button>
-        <button id="Tapani">Tapani</button>
+        <label for="fname">selection:</label>
+        <input type="text" id="fname" name="fname"><br><br>
     </div>
     <div id="container" class="column map" style="border: 1px solid black; background-color: black">
 </div>
