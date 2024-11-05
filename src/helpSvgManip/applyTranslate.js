@@ -373,3 +373,34 @@ f: 470.8123779296875
 -115.0938406788772
 
  */
+/*
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:template match="catalog">
+    <catalog>
+    <xsl:apply-templates/>
+</catalog>
+</xsl:template>
+
+<xsl:template match="circle">
+    <circle>
+        <xsl:attribute name="style">
+            <xsl:value-of select="@style"/>
+        </xsl:attribute>
+        <xsl:attribute name="id">
+            <xsl:value-of select="@id"/>
+        </xsl:attribute>
+        <xsl:attribute name="r">
+            <xsl:value-of select="@r"/>
+        </xsl:attribute>
+        <xsl:attribute name="cx">
+            <xsl:value-of select="@cx*0.5+@cy*(-0.8660253985)+5842.753040037"/>
+        </xsl:attribute>
+        <xsl:attribute name="cy">
+            <xsl:value-of select="@cx*0.8660253985+@cy*0.5+178.1175757042"/>
+        </xsl:attribute>
+
+    </circle>
+</xsl:template>
+</xsl:stylesheet>
+*/

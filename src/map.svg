@@ -1,16 +1,9 @@
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
-     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" id="svg1" width="100%" height="100%" xml:space="preserve" sodipodi:docname="tmp.svg" inkscape:version="1.0.2 (e86c870879, 2021-01-15)">
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     version="1.1" id="svg1" width="100%" height="100%" xml:space="preserve" sodipodi:docname="tmp.svg" inkscape:version="1.0.2 (e86c870879, 2021-01-15)" style="background-color: black">
   <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1920" inkscape:window-height="1016" id="namedview702" showgrid="false" inkscape:lockguides="false" inkscape:zoom="0.08" inkscape:cx="7537.5" inkscape:cy="4029.9838" inkscape:window-x="0" inkscape:window-y="27" inkscape:window-maximized="1" inkscape:current-layer="svg1"/>
     <defs id="defs2936"/>
-    <g id="g720" style="display:inline">
-    <g id="g710" clip-path="url(#clipPath712)">
-      <g inkscape:label="Clip" id="g708">
-        <g id="layer13" style="display:inline" inkscape:label="Fond" inkscape:highlight-color="#000000">
-          <rect style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:7.18408;stroke-opacity:1" id="rect219" width="6000" height="5000" x="0" y="0"/>
-        </g>
-      </g>
-    </g>
-  </g>
     <g id="g4" style="display:inline" inkscape:label="expansion">
     <g inkscape:groupmode="layer" id="layer35" inkscape:label="Bordure Médiane" sodipodi:insensitive="true">
       <path style="opacity:0.271525;fill:#439fff;fill-opacity:1;stroke:#00ffe6;stroke-width:5.66929;stroke-dasharray:none;stroke-opacity:1" d="m 3660.2207,872.2377999999999 c 0,0 522.7181,528.8729 541.2594,1080.1936 -0.0003,163.7579 -53.3091,381.2635 352.8437,843.7785 75.3907,87.0367 272.4155,250.0475 -226.9674,554.8723 -106.9586,65.3566 11.1507,-222.624 -317.604,7.9705 -7.8555,24.247 -368.6545,340.6621 -639.4322,436.2186 -227.5586,126.0987 -280.1896,243.0484 -845.0112,231.67 -166.3031,-16.8033 -160.4435,-140.3207 -195.9843,-176.1913 -44.171,-118.1524 -397.5843,-92.2376 -412.5743,-280.1533 -0.3904,-106.5679 1.1848,-272.1081 -102.6239,-411.0005 -133.3375,-152.1738 -485.2807,145.666 -507.6428,-379.6536 -1.5378,-110.8281 -186.3033,-476.7601 108.5471,-778.7015 86.8293,-83.1179 4.3342,-296.9616 176.0394,-460.0113 53.284,-56.482 1664.7925,-1001.3674 2069.1505,-668.992 z" id="path355" sodipodi:nodetypes="cccccccccccccc"/>
