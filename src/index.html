@@ -95,7 +95,9 @@
                 document.getElementById('Tapani')
                     .addEventListener('click', function () {
                         cleanPointer()
-                        var point = { x: 2434.9736000000003, y: 2344.9163 }
+                        const sector = document.getElementById("g118")
+                        const bBox = sector.getBBox();
+                        var point = { x: bBox.x+bBox.width/2, y:  bBox.y+bBox.height/2 }
                         zoomTiger.centerAt(5, point, true)
                     })
             })
