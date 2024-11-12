@@ -49,7 +49,7 @@
         }
 
         function createPointer(point) {
-            fetch("./pointer.svg")
+            fetch("./data/pointer.svg")
                 .then((res) => res.text())
                 .then((text) => {
                     var parser = new DOMParser();
@@ -63,13 +63,13 @@
                 })
         }
 
-        fetch("./content.json")
+        fetch("./data/content.json")
             .then((res) => res.text())
             .then((text) => {
 
                 const contentJson = JSON.parse(text)
 
-                fetch("./map.svg")
+                fetch("./data/map.svg")
                     .then((res) => res.text())
                     .then((text) => {
                         var parser = new DOMParser();
