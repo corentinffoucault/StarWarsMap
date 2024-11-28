@@ -97,8 +97,11 @@
                                 cleanPointer()
                                 let info = contentJson.planet[event.target.value.toLocaleLowerCase()]
                                 let usePointer = true;
+
                                 if (!info) {
                                     info = contentJson.sector[event.target.value.toLocaleLowerCase()]
+
+                                console.log(contentJson.sector)
                                     usePointer = false;
                                 }
                                 if (!info) {

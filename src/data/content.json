@@ -1,17 +1,18 @@
 {
-  "planet": [
+  "planet": { "coruscant":
     {
       "id": "circle164",
       "name": "coruscant"
-    }, {
+    }, 
+    "naos": {
       "id": "circle524",
       "name": "naos"
     }
-  ],
-  "sector": [
-    {
+  },
+  "sector": {
+    "tapani": {
       "id": "g118",
       "name": "Tapani"
     }
-  ]
+  }
 }
