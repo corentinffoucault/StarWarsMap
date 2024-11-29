@@ -2,6 +2,7 @@
 <html>
 <head>
     <script src="dist/svg-pan-zoom.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin = "anonymous" referrerpolicy = "no-referrer"> </script>
     <style>
         html, body, .anychart-embed-samples-maps-svg-01 {
             background-color: white;
@@ -45,7 +46,9 @@
     </style>
     <script>
         let zoomTiger;
-
+        let planetId;
+        let planetName;
+        let textcsv='';
         function cleanPointer() {
             if (document.getElementById("pointer_sw")) {
                 document.getElementById("pointer_sw")
@@ -93,40 +96,90 @@
                         })
 
                         document.getElementById('fname')
+                            // .addEventListener('input', function (event) {
+                            //     cleanPointer()
+                            //     let info = contentJson.planet[event.target.value.toLocaleLowerCase()]
+                            //     let usePointer = true;
+                            //
+                            //     if (!info) {
+                            //         info = contentJson.sector[event.target.value.toLocaleLowerCase()]
+                            //
+                            //     console.log(contentJson.sector)
+                            //         usePointer = false;
+                            //     }
+                            //     if (!info) {
+                            //         return;
+                            //     }
+                            //     const sector = document.getElementById(info.id)
+                            //     const bBox = sector.getBBox();
+                            //     var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
+                            //     zoomTiger.centerAt(5, point, true)
+                            //     if (usePointer) {
+                            //         createPointer(point)
+                            //     }
+                            // })
                             .addEventListener('input', function (event) {
                                 cleanPointer()
-                                let info = contentJson.planet[event.target.value.toLocaleLowerCase()]
-                                let usePointer = true;
-
-                                if (!info) {
-                                    info = contentJson.sector[event.target.value.toLocaleLowerCase()]
-
-                                console.log(contentJson.sector)
-                                    usePointer = false;
-                                }
-                                if (!info) {
-                                    return;
-                                }
-                                const sector = document.getElementById(info.id)
-                                const bBox = sector.getBBox();
+                                planetId = 'circle'+event.target.value
+                                const planet = document.getElementById(planetId)
+                                const bBox = planet.getBBox();
                                 var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
-                                zoomTiger.centerAt(5, point, true)
-                                if (usePointer) {
-                                    createPointer(point)
-                                }
+                                zoomTiger.centerAt(1, point, true)
+                                createPointer(point)
                             })
 
                     document.getElementById('myInput')
                             .addEventListener('input', function (event) {
-
-
-                        /*An array containing all the country names in the world:*/
-                        var countriesA = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan"]
-                        var countriesAutres = ["Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-                        
-                        /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-                        autocomplete(document.getElementById("myInput"), [countriesA, countriesAutres ]);
                             })
+                        
+                    document.getElementById('myInput').addEventListener('keydown', function(event) {
+                        if (event.key === 'Tab' || event.key === 'Enter') {
+                            planetName = event.target.value
+                            textcsv += `${planetId};${planetName}\n`
+                            const elem = document.getElementById('fname')
+                            let planet
+                            while (!planet && elem.value < 1000) {
+                                elem.value = +elem.value + 1
+                                planetId = 'circle' + elem.value
+                                planet = document.getElementById(planetId)
+                            }
+                            const bBox = planet.getBBox();
+                            var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
+                            zoomTiger.centerAt(1, point, true)
+                            cleanPointer()
+                            createPointer(point)
+                            document.getElementById('myInput').value = ''
+                            document.getElementById("myInput").focus()
+                        }
+                    });
+
+                        document.getElementById('save')
+                            .addEventListener('click', function (event) {
+                                var blob = new Blob([textcsv], {
+                                    type: "text/plain;charset=utf-8",
+                                });
+                                saveAs(blob, "download.txt");
+                                document.close();
+                            })
+                        document.getElementById('save').addEventListener('focus', function(event) {
+                            document.getElementById("myInput").focus()
+                        });
+
+                        document.getElementById('open')
+                            .addEventListener('click', function (event) {
+                                document.open();
+                            })
+
+                        //     .addEventListener('input', function (event) {
+                        //
+                        //
+                        // /*An array containing all the country names in the world:*/
+                        // var countriesA = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan"]
+                        // var countriesAutres = ["Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+                        //
+                        // /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+                        // autocomplete(document.getElementById("myInput"), [countriesA, countriesAutres ]);
+                        //     })
                     }).catch((e) => console.error(e));
             });
 
@@ -250,6 +303,8 @@
         <label for="fname">selection:</label>
         <input type="text" id="fname" name="fname"><br><br>
         <input id="myInput" type="text" name="myCountry" placeholder="Country">
+        <input class="styled" type="button" value="save" id="save"/>
+        <input class="styled" type="button" value="open" id="open" />
     </div>
     <div id="container" class="column map" style="border: 1px solid black; background-color: black">
 </div>
