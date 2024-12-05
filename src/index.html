@@ -177,10 +177,10 @@
     function autocomplete(inp, data) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
-        var currentFocus;
+        let currentFocus;
         /*execute a function when someone writes in the text field:*/
         inp.addEventListener("input", function(e) {
-            var a, b, i, val = this.value;
+            let a, b, i, val = this.value;
             /*close any already open lists of autocompleted values*/
             closeAllLists();
             if (!val) { return false;}
@@ -191,7 +191,7 @@
             a.setAttribute("class", "autocomplete-items");
             /*append the DIV element as a child of the autocomplete container:*/
             this.parentNode.appendChild(a);
-            var ul = document.createElement("ul");
+            const ul = document.createElement("ul");
             a.appendChild(ul);
             for (const [cat, subData] of Object.entries(data)) {
                     /*create a DIV element for each matching element:*/
@@ -203,16 +203,26 @@
                     /*execute a function when someone clicks on the item value (DIV element):*/
                     ul.appendChild(b);
 
-                    ul2 = document.createElement("ul");
+                    const ul2 = document.createElement("ul");
                     b.appendChild(ul2);
-                    for (const [name] of Object.entries(subData)) {
+                let nbElem = 0;
+                for (const [name] of Object.entries(subData)) {
+                        if (nbElem > 5) {
+                            b = document.createElement("li");
+                            /*make the matching letters bold:*/
+                            b.innerHTML = "          <strong>...</strong>";
+                            /*insert a input field that will hold the current array item's value:*/
+                            b.innerHTML += "<input type='hidden' value='" + name + "'>";
+                            ul2.appendChild(b);
+                            break
+                        }
                         /*check if the item starts with the same letters as the text field value:*/
                         if (name.substring(0, val.length).toUpperCase() === val.toUpperCase()) {
                             /*create a DIV element for each matching element:*/
                             b = document.createElement("li");
                             /*make the matching letters bold:*/
-                            b.innerHTML = "          <strong>" + name.substr(0, val.length) + "</strong>";
-                            b.innerHTML += name.substr(val.length);
+                            b.innerHTML = "          <strong>" + name.substring(0, val.length) + "</strong>";
+                            b.innerHTML += name.substring(val.length);
                             /*insert a input field that will hold the current array item's value:*/
                             b.innerHTML += "<input type='hidden' value='" + name + "'>";
                             /*execute a function when someone clicks on the item value (DIV element):*/
@@ -224,6 +234,7 @@
                                 closeAllLists();
                             });
                             ul2.appendChild(b);
+                            nbElem++
                         }
                     }
             }
