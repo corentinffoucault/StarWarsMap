@@ -3,18 +3,6 @@ const fs = require('fs/promises');
 
 var replacer = new Map();
 
-/*
-[
-  'circle57',    'circle12',
-  'circle30',    'circle392',
-  'circle102-1', 'circle131',
-  'circle167-0', 'circle99',
-  'circle208',   'circle332-0',
-  'circle545-6', 'circle636-2',
-  'circle209-6', 'circle639-7',
-  'circle675-9', 'circle678-7'
-]
-*/
 async function AddPlaneteTitle(group) {
         if (group.$['inkscape:label'] !== "Planètes") {
             return
@@ -26,14 +14,19 @@ async function AddPlaneteTitle(group) {
             return acc
          }, new Map() )
         const missingPlanete = []
-        group.circle.forEach((it)=> {
-            console.log(`beee ${JSON.stringify(it.$.id)}`)
-            if (planetesParse.has(it.$.id)) {
-                it.title = [{"_":planetesParse.get(it.$.id)}]
-            } else {
-                missingPlanete.push(it.$.id)
-            }
-        })
+        if (!group.a) {
+            group.a = []
+            group.circle.forEach((it)=> {
+                if (planetesParse.has(it.$.id)) {
+                    it.title = [{"_":planetesParse.get(it.$.id)}]
+                } else {
+                    missingPlanete.push(it.$.id)
+                }
+                const a = {$:{class: 'path', hover:"fill:green", href:"https://starwars.fandom.com/fr/wiki/Voie_Hydienne"}, circle:[it]}
+                group.a.push(a)
+            })
+            delete group.circle
+        }
         console.log(missingPlanete)
 }
 
@@ -46,12 +39,33 @@ async function main() {
         await AddPlaneteTitle(group)
         if (group.$['inkscape:label'] === "Routes spatiales") {
             group.g.forEach(it => {
-                if (it.$['inkscape:label'] === "Principales") {
                 it.g.forEach(it2 => {
-                        if (it2.$['inkscape:label'] === "Voie Hydienne") {
-                            console.log(`aaaaa ${JSON.stringify(it2.a[0].path[0].title[0]._)}`)
-                        }
+                    it2.title = [{"_":it2.$['inkscape:label']}]
+                    if (!it2.a || it2.a.length === 0) {
+                        it2.a = [{$:{class: 'path', hover:"fill:green", href:"https://starwars.fandom.com/fr/wiki/Voie_Hydienne"}, path: [...it2.path]}]
+                        it2.path = []
+                    }
+                    if (it2.$['inkscape:label'] === "Voie Hydienne") {
+                        console.log(`aaaaa ${JSON.stringify(it2.a[0].path)}`)
+                    }
                 })
+            })
+        } else if (group.$['inkscape:label'] === "Régions") {
+            group.g.forEach(it2 => {
+                it2.title = [{"_":it2.$['inkscape:label']}]
+                if (!it2.a || it2.a.length === 0) {
+                    const keys = Object.keys(it2)
+                    const a = {$:{class: 'path', hover:"fill:green", href:"https://starwars.fandom.com/fr/wiki/Voie_Hydienne"}}
+                    keys.forEach(key => {
+                        if (key!=='$' && key!=="title") {
+                            a[key] = [...it2[key]]
+                            delete it2[key]
+                        }
+                    })
+                    it2.a = [a]
+                }
+                if (it2.$['inkscape:label'] === "Voie Hydienne") {
+                    console.log(`aaaaa ${JSON.stringify(it2.a[0].path)}`)
                 }
             })
         }
@@ -59,7 +73,7 @@ async function main() {
 
     var builder = new xml2js.Builder();
     var xml = builder.buildObject(svgInXml);
-    await fs.writeFile('./tmp2.json', xml.toString({
+    await fs.writeFile('./tmp2.svg', xml.toString({
 
         pretty: true,
         indent: ' ',
