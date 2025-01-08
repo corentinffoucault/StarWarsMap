@@ -242,6 +242,10 @@
                     usePointer = false;
                 }
                 if (!info) {
+                    info = contentJson.route[name]
+                    usePointer = false;
+                }
+                if (!info) {
                     return;
                 }
                 const sector = document.getElementById(info.id)

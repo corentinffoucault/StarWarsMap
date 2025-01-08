@@ -478,33 +478,48 @@
   </g>
   <g id="layer12" style="display:inline" inkscape:label="Planètes">
     <g id="g542bis">
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2371.0512,4499.0485 c -0.1159,-0.5565 -0.156,-1.1343 -0.3479,-1.6694 -0.1243,-0.3466 -0.6157,-0.4522 -0.7812,-0.7812 -0.4991,-0.9924 0.7385,-4.9596 0.7385,0.087" id="path530"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2374.8932000000004,4490.5546 c -0.9912,0 -1.9824,0 -2.9736,0 -2.1635,0 -0.3699,-0.2257 0.2999,-0.8955 1.5423,-1.5423 2.0172,-5.5243 4.6568,-5.5243 0.085,0 -0.1864,-0.051 -0.2546,0 -2.1556,1.5948 1.8733,-0.5937 -1.5969,0.5524 -0.4857,0.1604 -1.0132,0.7566 -1.4846,0.9883 -0.2647,0.1302 -0.6972,-0.2275 -0.8848,0 -0.21,0.2548 0,0.6604 0,0.9905" id="path531"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2384.3557,4496.2127 c -0.2389,-1.5501 -0.5536,-3.0904 -0.7165,-4.6504 -0.1229,-1.1767 -0.3534,-4.3805 1.5861,-4.3805 0.1769,0 0.4057,-0.1252 0.5308,0 0.1806,0.1805 -0.1447,0.5557 0,0.766 1.1725,1.7037 3.6981,4.6281 2.4838,6.4824" id="path532"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2379.2738,4516.6676 c -1.6625,0.5803 -4.3737,-5.8156 -1.9659,-5.8156" id="path534"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2392.6982,4507.0152 c 0.7492,-0.7879 -6.0241,2.2549 -5.3107,0.8459 0.1728,-0.3412 0.6987,-0.9028 0.8049,-1.2214 0.4162,-1.2485 0.086,-2.0546 0.7855,-2.8679" id="path535"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2367.3405000000002,4509.404 c 1.1661,-0.9435 1.3953,-6.5579 2.9067,-6.5579" id="path536"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2384.6664,4478.3494 c 1.0404,0.6074 6.5766,-0.6784 7.3887,0 0.26,0.2172 -0.3007,0.5722 -0.3107,0.6172 -0.079,0.3517 0,0.7207 0,1.0811 0,0.2 -0.3551,3.943 0,4.2274 0.679,0.5437 0.5092,-0.7136 0.5092,0.5092" id="path538"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2396.1962000000003,4492.0241000000005 c 1.2595,0.8121 2.4375,1.7673 3.7785,2.4363 0.3295,0.1644 0.7554,-0.1164 1.1048,0 0.5638,0.188 1.796,2.1724 1.1049,2.7622 -0.3595,0.3067 -1.0011,-0.2229 -1.4178,0 -0.1604,0.086 0.1287,0.4172 0,0.5459 -0.2384,0.2384 -0.6903,0.096 -0.971,0.2827" id="path539"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2360.4287000000004,4497.2204 c -0.9877,0.3481 -1.9594,0.7452 -2.9629,1.0444 -2.1695,0.647 -3.0798,2.5435 -1.586,4.7798 0.4339,0.6497 1.1885,1.0323 1.6572,1.6573 0.6452,0.8602 1.9477,3.8131 2.732,3.8131" id="path540"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2363.1778000000004,4484.3355 c -0.1647,-1.0775 -0.266,-2.1667 -0.4941,-3.2326 -0.3987,-1.8629 -2.3281,-10.3439 -0.5783,-11.9872 0.3001,-0.2819 0.8137,-0.2613 1.1048,-0.5525 0.1639,-0.1638 0.1481,-1.6484 1.0423,-1.1048 0.3409,0.2072 -0.4234,0.6842 -0.5524,1.0617 -0.4083,1.1944 0.8561,4.3504 2.078,4.3504" id="path541"/>
-      <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2400.1948,4513.0638 c -0.7454,1.4851 -4.2622,9.5733 -5.8156,10.2264 -0.1198,0.05 0.494,-2.7664 -1.1869,-2.7664 -1.0404,0 -3.1877,-0.4467 -4.1475,0 -0.4479,0.2084 -2.9412,0.9236 -3.1937,0.9236" id="path542bis"/>
+      <title>Smuggler's Run</title>
+      <a class="path" hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2371.0512,4499.0485 c -0.1159,-0.5565 -0.156,-1.1343 -0.3479,-1.6694 -0.1243,-0.3466 -0.6157,-0.4522 -0.7812,-0.7812 -0.4991,-0.9924 0.7385,-4.9596 0.7385,0.087" id="path530"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2374.8932000000004,4490.5546 c -0.9912,0 -1.9824,0 -2.9736,0 -2.1635,0 -0.3699,-0.2257 0.2999,-0.8955 1.5423,-1.5423 2.0172,-5.5243 4.6568,-5.5243 0.085,0 -0.1864,-0.051 -0.2546,0 -2.1556,1.5948 1.8733,-0.5937 -1.5969,0.5524 -0.4857,0.1604 -1.0132,0.7566 -1.4846,0.9883 -0.2647,0.1302 -0.6972,-0.2275 -0.8848,0 -0.21,0.2548 0,0.6604 0,0.9905" id="path531"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2384.3557,4496.2127 c -0.2389,-1.5501 -0.5536,-3.0904 -0.7165,-4.6504 -0.1229,-1.1767 -0.3534,-4.3805 1.5861,-4.3805 0.1769,0 0.4057,-0.1252 0.5308,0 0.1806,0.1805 -0.1447,0.5557 0,0.766 1.1725,1.7037 3.6981,4.6281 2.4838,6.4824" id="path532"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2379.2738,4516.6676 c -1.6625,0.5803 -4.3737,-5.8156 -1.9659,-5.8156" id="path534"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2392.6982,4507.0152 c 0.7492,-0.7879 -6.0241,2.2549 -5.3107,0.8459 0.1728,-0.3412 0.6987,-0.9028 0.8049,-1.2214 0.4162,-1.2485 0.086,-2.0546 0.7855,-2.8679" id="path535"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2367.3405000000002,4509.404 c 1.1661,-0.9435 1.3953,-6.5579 2.9067,-6.5579" id="path536"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2384.6664,4478.3494 c 1.0404,0.6074 6.5766,-0.6784 7.3887,0 0.26,0.2172 -0.3007,0.5722 -0.3107,0.6172 -0.079,0.3517 0,0.7207 0,1.0811 0,0.2 -0.3551,3.943 0,4.2274 0.679,0.5437 0.5092,-0.7136 0.5092,0.5092" id="path538"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2396.1962000000003,4492.0241000000005 c 1.2595,0.8121 2.4375,1.7673 3.7785,2.4363 0.3295,0.1644 0.7554,-0.1164 1.1048,0 0.5638,0.188 1.796,2.1724 1.1049,2.7622 -0.3595,0.3067 -1.0011,-0.2229 -1.4178,0 -0.1604,0.086 0.1287,0.4172 0,0.5459 -0.2384,0.2384 -0.6903,0.096 -0.971,0.2827" id="path539"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2360.4287000000004,4497.2204 c -0.9877,0.3481 -1.9594,0.7452 -2.9629,1.0444 -2.1695,0.647 -3.0798,2.5435 -1.586,4.7798 0.4339,0.6497 1.1885,1.0323 1.6572,1.6573 0.6452,0.8602 1.9477,3.8131 2.732,3.8131" id="path540"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2363.1778000000004,4484.3355 c -0.1647,-1.0775 -0.266,-2.1667 -0.4941,-3.2326 -0.3987,-1.8629 -2.3281,-10.3439 -0.5783,-11.9872 0.3001,-0.2819 0.8137,-0.2613 1.1048,-0.5525 0.1639,-0.1638 0.1481,-1.6484 1.0423,-1.1048 0.3409,0.2072 -0.4234,0.6842 -0.5524,1.0617 -0.4083,1.1944 0.8561,4.3504 2.078,4.3504" id="path541"/>
+        <path style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:3.2126;stroke-dasharray:none;stroke-opacity:1" d="m 2400.1948,4513.0638 c -0.7454,1.4851 -4.2622,9.5733 -5.8156,10.2264 -0.1198,0.05 0.494,-2.7664 -1.1869,-2.7664 -1.0404,0 -3.1877,-0.4467 -4.1475,0 -0.4479,0.2084 -2.9412,0.9236 -3.1937,0.9236" id="path542bis"/>
+      </a>
     </g>
     <g id="g101" inkscape:label="g101" style="display:inline">
-      <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100" cx="1809.9117999999999" cy="3960.8758" rx="16.679842" ry="7.3170776"/>
-      <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 1810.6981,3940.0543 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101"/>
+      <title>Spice Terminus</title>
+      <a class="path" hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
+        <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100" cx="1809.9117999999999" cy="3960.8758" rx="16.679842" ry="7.3170776"/>
+        <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 1810.6981,3940.0543 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101"/>
+      </a>
     </g>
     <g id="g101-7" inkscape:label="g101" style="display:inline">
-      <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100-2" cx="1054.0792999999999" cy="2226.6810000000005" rx="16.679842" ry="7.3170776"/>
-      <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 1054.8656,2205.8597 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101-7"/>
+      <title>Station Koda</title>
+      <a class="path" hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
+        <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100-2" cx="1054.0792999999999" cy="2226.6810000000005" rx="16.679842" ry="7.3170776"/>
+        <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 1054.8656,2205.8597 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101-7"/>
+      </a>
     </g>
     <g id="g101-1" inkscape:label="g101" style="display:inline">
-      <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100-0" cx="3620.5613999999996" cy="3724.9412" rx="16.679842" ry="7.3170776"/>
-      <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 3621.3476,3704.1201 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101-3"/>
+      <title>Circumtore</title>
+      <a class="path" hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
+        <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100-0" cx="3620.5613999999996" cy="3724.9412" rx="16.679842" ry="7.3170776"/>
+        <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 3621.3476,3704.1201 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101-3"/>
+      </a>
     </g>
     <g id="g101-1-1" inkscape:label="g101" style="display:inline">
-      <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100-0-9" cx="4659.0097" cy="3413.098" rx="16.679842" ry="7.3170776"/>
-      <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 4659.796,3392.2763999999997 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101-3-6"/>
+      <title>Junkfort St.</title>
+      <a class="path" hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
+        <ellipse style="fill:#cfcfcf;fill-opacity:1;stroke:#ffffff;stroke-width:5.73354;stroke-dasharray:none;stroke-opacity:1" id="path100-0-9" cx="4659.0097" cy="3413.098" rx="16.679842" ry="7.3170776"/>
+        <path style="display:inline;fill:none;stroke:#ffffff;stroke-width:5.77134;stroke-dasharray:none;stroke-opacity:1" d="m 4659.796,3392.2763999999997 c -0.2778,39.974 -0.8935,40.9941 -0.8935,40.9941" id="path101-3-6"/>
+      </a>
     </g>
     <a class="path" hover="fill:green" href="https://starwars.fandom.com/fr/wiki/Voie_Hydienne">
       <circle style="opacity:1;fill:#f768fc;fill-opacity:1;stroke:#a11483;stroke-width:5.89228;stroke-dasharray:none;stroke-opacity:1" id="circle55" r="17.399023" cx="2777.1557000000003" cy="1931.5692">
