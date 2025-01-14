@@ -67,8 +67,7 @@
 
         function cleanPointer() {
             if (document.getElementById("pointer_sw")) {
-                document.getElementById("pointer_sw")
-                    .remove();
+                document.getElementById("pointer_sw").remove();
             }
         }
 
@@ -86,12 +85,57 @@
                     pointer.setAttribute("transform", `matrix(${facteur},0,0,${facteur},${point.x - ((pointerSize.width / 2 + pointerSize.x) * facteur)},${point.y - (pointerSize.height + pointerSize.y) * facteur})`)
                 })
         }
+
         fetch("./data/content.json")
             .then((res) => res.text())
             .then((text) => {
 
                 const contentJson = JSON.parse(text)
+                let currentGroupName = 'planet'
+                let currentGroup = Object.keys(contentJson[currentGroupName])
+                let currentIndexToEdit = 0
 
+                function addUrlToElem(newUrl) {
+                    contentJson[currentGroupName][currentGroup[currentIndexToEdit]].url = newUrl
+                }
+
+                function selectElem() {
+                    goToNextElem()
+                    if (currentGroupName==='planet') {
+                        selectPlanet()
+                    } else {
+                        selectOther()
+                    }
+                }
+
+                function selectPlanet() {
+                    elemName = currentGroup[currentIndexToEdit]
+                    document.getElementById('toAddUrl').innerHTML = elemName
+                    document.getElementById('addUrl').value = contentJson[currentGroupName][elemName].url || ''
+                    const elemId = contentJson[currentGroupName][elemName].id
+                    const elem = document.getElementById(elemId)
+                    const bBox = elem.getBBox();
+                    var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
+                    zoomTiger.centerAt(1, point, true)
+                    cleanPointer()
+                    createPointer(point)
+                }
+
+                function selectOther() {
+                    elemName = currentGroup[currentIndexToEdit]
+                    document.getElementById('toAddUrl').innerHTML = elemName
+                    document.getElementById('addUrl').value = contentJson[currentGroupName][elemName].url
+                    cleanPointer()
+                }
+
+                function goToNextElem() {
+                    currentIndexToEdit++
+                    if (currentIndexToEdit >= currentGroup.length) {
+                        currentGroupName = currentGroupName==='planet' ? 'route' : currentGroupName==='route' ? 'sector' : 'planet'
+                        currentGroup = Object.keys(contentJson[currentGroupName])
+                        currentIndexToEdit = 0
+                    }
+                }
 
                 fetch("./data/map.svg")
                     .then((res) => res.text())
@@ -99,6 +143,7 @@
                         var parser = new DOMParser();
                         var doc = parser.parseFromString(text, "image/svg+xml");
                         document.getElementById("container").appendChild(doc.lastChild);
+
                         zoomTiger = svgPanZoom('#svg1', {
                             zoomEnabled: true,
                             controlIconsEnabled: true,
@@ -110,59 +155,28 @@
                                 cleanPointer()
                             }
                         })
+                        selectPlanet()
 
                         document.getElementById('fname')
                             .addEventListener('focus', function (event) {
                                 autocomplete(document.getElementById("fname"), contentJson);
                             })
 
-                        // .addEventListener('input', function (event) {
-                        //     cleanPointer()
-                        //     planetId = 'circle'+event.target.value
-                        //     const planet = document.getElementById(planetId)
-                        //     const bBox = planet.getBBox();
-                        //     var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
-                        //     zoomTiger.centerAt(1, point, true)
-                        //     createPointer(point)
-                        // })
+                        document.getElementById('addUrl').addEventListener('keydown', function(event) {
+                            if (event.key === 'Tab' || event.key === 'Enter') {
+                                addUrlToElem(event.target.value)
+                                selectElem()
+                            }
+                        });
 
-                        // document.getElementById('myInput').addEventListener('keydown', function(event) {
-                        //     if (event.key === 'Tab' || event.key === 'Enter') {
-                        //         planetName = event.target.value
-                        //         textcsv += `${planetId};${planetName}\n`
-                        //         const elem = document.getElementById('fname')
-                        //         let planet
-                        //         while (!planet && elem.value < 1000) {
-                        //             elem.value = +elem.value + 1
-                        //             planetId = 'circle' + elem.value
-                        //             planet = document.getElementById(planetId)
-                        //         }
-                        //         const bBox = planet.getBBox();
-                        //         var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
-                        //         zoomTiger.centerAt(1, point, true)
-                        //         cleanPointer()
-                        //         createPointer(point)
-                        //         document.getElementById('myInput').value = ''
-                        //         document.getElementById("myInput").focus()
-                        //     }
-                        // });
-
-                        // document.getElementById('save')
-                        //     .addEventListener('click', function (event) {
-                        //         var blob = new Blob([textcsv], {
-                        //             type: "text/plain;charset=utf-8",
-                        //         });
-                        //         saveAs(blob, "download.txt");
-                        //         document.close();
-                        //     })
-                        // document.getElementById('save').addEventListener('focus', function(event) {
-                        //     document.getElementById("myInput").focus()
-                        // });
-
-                        // document.getElementById('myInput').addEventListener('focus', function (event) {
-                        //     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-                        //     autocomplete(document.getElementById("myInput"), contentJson);
-                        // })
+                        document.getElementById('save')
+                            .addEventListener('click', function (event) {
+                                var blob = new Blob([JSON.stringify(contentJson)], {
+                                    type: "text/plain;charset=utf-8",
+                                });
+                                saveAs(blob, "content.json");
+                                document.close();
+                            })
                     }).catch((e) => console.error(e));
             });
 
@@ -301,7 +315,10 @@
 <div class="row">
     <div id="container2" class="column interface" style="border: 1px solid black;">
         <label for="fname">selection:</label>
-        <input type="text" id="fname" name="fname">
+        <input type="text" id="fname" name="fname"/>
+        <label id="toAddUrl" for="addUrl">selection:</label>
+        <input type="text" id="addUrl" name="fname"/>
+        <button id="save" name="fname">save</button>
     </div>
     <div id="container" class="column map" style="border: 1px solid black; background-color: black">
     </div>
