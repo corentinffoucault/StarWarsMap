@@ -8,9 +8,9 @@ async function AddPlaneteTitle(group) {
         return
     }
 
-    const planetes = JSON.parse(await fs.readFile('../planetes.json'))
-    const planetesParse = Object.values(planetes).reduce((acc, it) => {
-        acc.set(it.id, it.name);
+    const planetes = JSON.parse(await fs.readFile('../data/content.json'))
+    const planetesParse = Object.values(planetes.planet).reduce((acc, it) => {
+        acc.set(it.id, { name: it.name, url: it.url });
         return acc
     }, new Map())
     const missingPlanete = []
@@ -19,26 +19,37 @@ async function AddPlaneteTitle(group) {
     }
     if (group.circle) {
         group.circle.forEach((it) => {
+            console.log(planetesParse.get(itg.$.id).url)
+            const a = { $: { class: 'path', hover: "fill:green" }, circle: [it] }
             if (planetesParse.has(it.$.id)) {
-                it.title = [{ "_": planetesParse.get(it.$.id) }]
+                it.title = [{ "_": planetesParse.get(it.$.id).name }]
+                a.$.href = planetesParse.get(itg.$.id).url
             } else {
                 missingPlanete.push(it.$.id)
             }
-            const a = { $: { class: 'path', hover: "fill:green", href: "https://starwars.fandom.com/fr/wiki/Voie_Hydienne" }, circle: [it] }
+            a.circle = [it]
             group.a.push(a)
         })
         delete group.circle
     }
+    if (group.a) {
+        group.a.forEach((it) => {
+            if (planetesParse.has(it.circle[0].$.id)) {
+                it.$.href = planetesParse.get(it.circle[0].$.id).url
+            }
+        })
+    }
     if (group.g) {
         group.g.forEach((itg) => {
             if (!itg.a) {
+                const a = { $: { class: 'path', hover: "fill:green" } }
                 if (planetesParse.has(itg.$.id)) {
-                    itg.title = [{ "_": planetesParse.get(itg.$.id) }]
+                    itg.title = [{ "_": planetesParse.get(itg.$.id).name }]
+                    a.$.href = planetesParse.get(itg.$.id).url
                 } else {
                     missingPlanete.push(itg.$.id)
                 }
                 const keys = Object.keys(itg)
-                const a = { $: { class: 'path', hover: "fill:green", href: "https://starwars.fandom.com/fr/wiki/Voie_Hydienne" } }
                 keys.forEach(key => {
                     if (key !== '$' && key !== "title") {
                         a[key] = [...itg[key]]
@@ -47,6 +58,9 @@ async function AddPlaneteTitle(group) {
                     delete itg[keys]
                 })
                 itg.a = [a]
+            }
+            if (planetesParse.has(itg.$.id)) {
+                itg.a[0].$.href = planetesParse.get(itg.$.id).url
             }
         })
     }
@@ -62,26 +76,39 @@ async function main() {
     for (const group of svgInXml.svg.g) {
         await AddPlaneteTitle(group)
         if (group.$['inkscape:label'] === "Routes spatiales") {
+            const planetes = JSON.parse(await fs.readFile('../data/content.json'))
+            
+            const planetesParse = Object.values(planetes.route).reduce((acc, it) => {
+                acc.set(it.id, { name: it.name, url: it.url });
+                return acc
+            }, new Map())
+
             group.g.forEach(it => {
                 it.g.forEach(it2 => {
                     it2.title = [{ "_": it2.$['inkscape:label'] }]
                     route[it2.$['inkscape:label']] = { name: it2.$['inkscape:label'], id: it2.$.id }
-                    if (!it2.a || it2.a.length === 0) {
+                    if (!it2.a || it2.a.length === 0) { 
                         it2.a = [{ $: { class: 'path', hover: "fill:green", href: "https://starwars.fandom.com/fr/wiki/Voie_Hydienne" }, path: [...it2.path] }]
                         it2.path = []
                     }
-                    if (it2.$['inkscape:label'] === "Voie Hydienne") {
-                        console.log(`aaaaa ${JSON.stringify(it2.a[0].path)}`)
+                    if (planetesParse.has(it2.$.id)) {
+                        it2.a[0].$.href = planetesParse.get(it2.$.id).url
                     }
                 })
             })
         } else if (group.$['inkscape:label'] === "Régions") {
+            const planetes = JSON.parse(await fs.readFile('../data/content.json'))
+            const planetesParse = Object.values(planetes.sector).reduce((acc, it) => {
+                acc.set(it.id, { name: it.name, url: it.url });
+                return acc
+            }, new Map())
             group.g.forEach(it2 => {
                 it2.title = [{ "_": it2.$['inkscape:label'] }]
                 secteur[it2.$['inkscape:label']] = { name: it2.$['inkscape:label'], id: it2.$.id }
                 if (!it2.a || it2.a.length === 0) {
                     const keys = Object.keys(it2)
                     const a = { $: { class: 'path', hover: "fill:green", href: "https://starwars.fandom.com/fr/wiki/Voie_Hydienne" } }
+
                     keys.forEach(key => {
                         if (key !== '$' && key !== "title") {
                             a[key] = [...it2[key]]
@@ -89,9 +116,10 @@ async function main() {
                         }
                     })
                     it2.a = [a]
-                }
-                if (it2.$['inkscape:label'] === "Voie Hydienne") {
-                    console.log(`aaaaa ${JSON.stringify(it2.a[0].path)}`)
+                } 
+                
+                if (planetesParse.has(it2.$.id)) {
+                    it2.a[0].$.href = planetesParse.get(it2.$.id).url
                 }
             })
         }

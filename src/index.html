@@ -57,9 +57,30 @@
         .autocomplete-active {
             background-color: crimson;
             color: red;
-        }
+        }.tooltip {
+    pointer-events:none; /*let mouse events pass through*/
+    opacity:0;
+    transition: opacity 0.3s;
+    text-shadow:1px 1px 0px gray;
+}
+
+div.tooltip {
+    background: lightblue;
+    border:solid gray;
+    position: absolute;
+    max-width: 8em;
+    text-align:center;
+}
+g.tooltip:not(.css) {
+  fill:currentColor;
+}
+g.tooltip rect {
+    fill: lightblue;
+    stroke: gray;
+}
     </style>
     <script>
+
         let zoomTiger;
         let planetId;
         let planetName;
@@ -95,48 +116,6 @@
                 let currentGroup = Object.keys(contentJson[currentGroupName])
                 let currentIndexToEdit = 0
 
-                function addUrlToElem(newUrl) {
-                    contentJson[currentGroupName][currentGroup[currentIndexToEdit]].url = newUrl
-                }
-
-                function selectElem() {
-                    goToNextElem()
-                    if (currentGroupName==='planet') {
-                        selectPlanet()
-                    } else {
-                        selectOther()
-                    }
-                }
-
-                function selectPlanet() {
-                    elemName = currentGroup[currentIndexToEdit]
-                    document.getElementById('toAddUrl').innerHTML = elemName
-                    document.getElementById('addUrl').value = contentJson[currentGroupName][elemName].url || ''
-                    const elemId = contentJson[currentGroupName][elemName].id
-                    const elem = document.getElementById(elemId)
-                    const bBox = elem.getBBox();
-                    var point = { x: bBox.x + bBox.width / 2, y: bBox.y + bBox.height / 2 }
-                    zoomTiger.centerAt(1, point, true)
-                    cleanPointer()
-                    createPointer(point)
-                }
-
-                function selectOther() {
-                    elemName = currentGroup[currentIndexToEdit]
-                    document.getElementById('toAddUrl').innerHTML = elemName
-                    document.getElementById('addUrl').value = contentJson[currentGroupName][elemName].url
-                    cleanPointer()
-                }
-
-                function goToNextElem() {
-                    currentIndexToEdit++
-                    if (currentIndexToEdit >= currentGroup.length) {
-                        currentGroupName = currentGroupName==='planet' ? 'route' : currentGroupName==='route' ? 'sector' : 'planet'
-                        currentGroup = Object.keys(contentJson[currentGroupName])
-                        currentIndexToEdit = 0
-                    }
-                }
-
                 fetch("./data/map.svg")
                     .then((res) => res.text())
                     .then((text) => {
@@ -155,28 +134,12 @@
                                 cleanPointer()
                             }
                         })
-                        selectPlanet()
 
                         document.getElementById('fname')
                             .addEventListener('focus', function (event) {
                                 autocomplete(document.getElementById("fname"), contentJson);
                             })
 
-                        document.getElementById('addUrl').addEventListener('keydown', function(event) {
-                            if (event.key === 'Tab' || event.key === 'Enter') {
-                                addUrlToElem(event.target.value)
-                                selectElem()
-                            }
-                        });
-
-                        document.getElementById('save')
-                            .addEventListener('click', function (event) {
-                                var blob = new Blob([JSON.stringify(contentJson)], {
-                                    type: "text/plain;charset=utf-8",
-                                });
-                                saveAs(blob, "content.json");
-                                document.close();
-                            })
                     }).catch((e) => console.error(e));
             });
 
@@ -230,6 +193,7 @@
                     }
                 }
             });
+
             inp.addEventListener("keydown", function (e) {
                 var x = document.getElementById("autocomplete-list");
                 if (x) x = x.getElementsByTagName("li");
@@ -270,6 +234,7 @@
                     createPointer(point)
                 }
             }
+            
             function addActive(x, incr) {
                 if (!x) return false;
                 removeActive(x);
@@ -316,9 +281,6 @@
     <div id="container2" class="column interface" style="border: 1px solid black;">
         <label for="fname">selection:</label>
         <input type="text" id="fname" name="fname"/>
-        <label id="toAddUrl" for="addUrl">selection:</label>
-        <input type="text" id="addUrl" name="fname"/>
-        <button id="save" name="fname">save</button>
     </div>
     <div id="container" class="column map" style="border: 1px solid black; background-color: black">
     </div>
